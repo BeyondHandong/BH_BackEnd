@@ -5,6 +5,20 @@ import java.util.Date;
 
 public class Post {
 
+    /** Post 는 게시글 작성 관련해서 DB에 담을 정보들을 정의한 model 이다.
+     *  1. 글 번호 -> id| if type is not "공지" or "FAQ", print id
+     *  2. 제목 -> title
+     *  3. 작성자 -> writer
+     *  4. 작성 일시 -> writeDate
+     *  5. 수정 일시 -> lastEditDate
+     *  6. 내용 -> content
+     *  7. 고마워요숫자 -> helpfulNum
+     *  8. 스크랩수 -> scrapNum
+     *  9. 조회수 -> viewNum
+     *
+     *  TODO : check if it is enough to construct the table -Jerome
+     * */
+
     private Long id;        // primary key
     private String writer;
     private String type;
