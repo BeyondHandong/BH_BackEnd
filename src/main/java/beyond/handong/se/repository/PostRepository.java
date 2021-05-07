@@ -2,6 +2,7 @@ package beyond.handong.se.repository;
 
 import beyond.handong.se.model.Post;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface PostRepository {
@@ -20,8 +21,7 @@ public interface PostRepository {
      * */
 
     Post save(Post post);
-    Optional<Post> findByKeyword(String keyword);
-    Optional<Post> findByCountry(String country);
-    Optional<Post> findByCategory(String category);
-
+    Optional<Post> findById(Long id);
+    Optional<Post> findByTitle(String title);
+    List<Post> findAll();
 }
