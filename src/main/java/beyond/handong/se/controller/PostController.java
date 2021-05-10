@@ -29,11 +29,13 @@ public class PostController {
     public List<Post> list(HttpServletRequest request, Model model) {
         List<Post> posts;
 
-        String[] types = request.getParameter("types").split(",");
-        String[] countries = request.getParameter("countries").split(",");
-        String[] categories = request.getParameter("category").split(",");
-
-        posts = postService.findPosts(Arrays.asList(types), Arrays.asList(countries), Arrays.asList(categories));
+        if(request.getParameter("types") == null) posts = postService.findPosts();
+        else {
+            String[] types = request.getParameter("types").split(",");
+            String[] countries = request.getParameter("countries").split(",");
+            String[] categories = request.getParameter("category").split(",");
+            posts = postService.findPosts(Arrays.asList(types), Arrays.asList(countries), Arrays.asList(categories));
+        }
 
         return posts;
     }
@@ -57,8 +59,6 @@ public class PostController {
         Date writeDate = new Date();
         post.setWriteDate(writeDate);
         post.setLastEditDate(writeDate);
-
-        System.out.println("post = " + post.getTitle());
 
         postService.join(post);
 
