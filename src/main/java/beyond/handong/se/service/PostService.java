@@ -20,8 +20,6 @@ public class PostService{
      * 회원 가입
      */
     public Long join(Post post) {
-        // 같은 이름이 있는 중복 회원 X
-        validateDuplicatedMember(post);
         postRepository.save(post);
         return post.getId();
     }
@@ -38,6 +36,10 @@ public class PostService{
      */
     public List<Post> findPosts() {
         return postRepository.findAll();
+    }
+
+    public List<Post> findPosts(List<String> types, List<String> countries, List<String> categories) {
+        return postRepository.findAll(types, countries, categories);
     }
 
     public Optional<Post> findOne(Long postId) {
