@@ -23,6 +23,11 @@ public class JpaPostRepository implements PostRepository{
     }
 
     @Override
+    public void edit(Post post) {
+        em.merge(post);
+    }
+
+    @Override
     public Optional<Post> findById(Long id) {
         Post post = em.find(Post.class, id);
         return Optional.ofNullable(post);
@@ -46,7 +51,7 @@ public class JpaPostRepository implements PostRepository{
     @Override
     public List<Post> findBySector(String sector, List<String> countries, List<String> categories) {
 
-        List<Post> results = em.createQuery("select m from Post m where m.setcor = :sector and m.country in :countries and m.category in :categories", Post.class)
+        List<Post> results = em.createQuery("select m from Post m where m.sector = :sector and m.country in :countries and m.category in :categories", Post.class)
                 .setParameter("sector", sector)
                 .setParameter("countries", countries)
                 .setParameter("categories", categories)
