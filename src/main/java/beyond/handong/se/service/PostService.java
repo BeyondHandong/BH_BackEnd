@@ -24,6 +24,10 @@ public class PostService{
         return post.getId();
     }
 
+    public void update(Post post) {
+        postRepository.edit(post);
+    }
+
     private void validateDuplicatedMember(Post post) {
         postRepository.findByTitle(post.getTitle())
                 .ifPresent(post1 -> {
