@@ -44,15 +44,17 @@ public class JpaPostRepository implements PostRepository{
     }
 
     @Override
-    public List<Post> findAll(List<String> types, List<String> countries, List<String> categories) {
+    public List<Post> findBySector(String sector, List<String> countries, List<String> categories) {
 
-        List<Post> results = em.createQuery("select m from Post m where m.type in :types and m.country in :countries and m.category in :categories", Post.class)
-                .setParameter("types", types)
+        List<Post> results = em.createQuery("select m from Post m where m.setcor = :sector and m.country in :countries and m.category in :categories", Post.class)
+                .setParameter("sector", sector)
                 .setParameter("countries", countries)
                 .setParameter("categories", categories)
                 .getResultList();
 
         return results;
     }
+
+
 }
 
