@@ -17,6 +17,7 @@ public class Post {
     private String writerName;
 
     private String type;
+    private String setcor;
     private String title;
     private String content;
 
@@ -52,6 +53,14 @@ public class Post {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getSetcor() {
+        return setcor;
+    }
+
+    public void setSetcor(String setcor) {
+        this.setcor = setcor;
     }
 
     public String getTitle() {
