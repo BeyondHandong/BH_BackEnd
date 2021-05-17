@@ -50,6 +50,11 @@ public class JpaPostRepository implements PostRepository{
 
     @Override
     public List<Post> findBySector(String sector, List<String> countries, List<String> categories) {
+        if(countries.isEmpty())
+            countries = em.createQuery("select distinct m.country from Post m").getResultList();
+
+        if(categories.isEmpty())
+            categories = em.createQuery("select distinct m.category from Post m").getResultList();
 
         List<Post> results = em.createQuery("select m from Post m where m.sector = :sector and m.country in :countries and m.category in :categories", Post.class)
                 .setParameter("sector", sector)
