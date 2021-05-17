@@ -86,12 +86,14 @@ public class PostController {
     @GetMapping("post/free")
     @ResponseBody
     public List<Post> freePosts(HttpServletRequest request, Model model) {
-        List<Post> posts;
+        String[] countries = {};
+        if(request.getParameter("countries") != null)
+            countries = request.getParameter("countries").split(",");
 
-        String[] countries = request.getParameter("countries").split(",");
-        String[] categories = request.getParameter("category").split(",");
-        posts = postService.findBySector("자유", Arrays.asList(countries), Arrays.asList(categories));
+        String[] categories = {};
+        if(request.getParameter("category") != null)
+            categories = request.getParameter("category").split(",");
 
-        return posts;
+        return postService.findBySector("자유", Arrays.asList(countries), Arrays.asList(categories));
     }
 }
