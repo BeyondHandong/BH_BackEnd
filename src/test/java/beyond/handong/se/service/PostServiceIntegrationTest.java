@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,7 +35,9 @@ class PostServiceIntegrationTest {
         post.setScrapNum(0l);
         post.setViewNum(0l);
 
-        Date writeDate = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        String writeDate = format.format(new Date());
+
         post.setWriteDate(writeDate);
         post.setWriteDate(writeDate);
 
@@ -48,6 +51,14 @@ class PostServiceIntegrationTest {
 
     @Test
     void findPosts() {
+        // given
+        Post post = new Post();
+        post.setTitle("test");
+
+        // when
+        Long saveId = postService.join(post);
+
+
     }
 
     @Test

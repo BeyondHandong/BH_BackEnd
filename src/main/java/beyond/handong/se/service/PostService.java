@@ -24,6 +24,10 @@ public class PostService{
         return post.getId();
     }
 
+    public void update(Post post) {
+        postRepository.edit(post);
+    }
+
     private void validateDuplicatedMember(Post post) {
         postRepository.findByTitle(post.getTitle())
                 .ifPresent(post1 -> {
@@ -38,8 +42,8 @@ public class PostService{
         return postRepository.findAll();
     }
 
-    public List<Post> findPosts(List<String> types, List<String> countries, List<String> categories) {
-        return postRepository.findAll(types, countries, categories);
+    public List<Post> findBySector(String sector, List<String> countries, List<String> categories){
+        return postRepository.findBySector(sector, countries, categories);
     }
 
     public Optional<Post> findOne(Long postId) {
