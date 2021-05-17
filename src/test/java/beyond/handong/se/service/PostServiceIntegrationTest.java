@@ -51,6 +51,14 @@ class PostServiceIntegrationTest {
 
     @Test
     void findPosts() {
+        // given
+        Post post = new Post();
+        post.setTitle("test");
+
+        // when
+        Long saveId = postService.join(post);
+
+
     }
 
     @Test
