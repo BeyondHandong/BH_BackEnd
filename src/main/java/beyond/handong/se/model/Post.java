@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.Date;
 
 @Entity
 public class Post {
@@ -17,6 +15,7 @@ public class Post {
     private String writerName;
 
     private String type;
+    private String sector;
     private String title;
     private String content;
 
@@ -27,8 +26,8 @@ public class Post {
     private Long scrapNum;
     private Long viewNum;
 
-    private Date writeDate;
-    private Date lastEditDate;
+    private String writeDate;
+    private String lastEditDate;
 
     public Long getId() {
         return id;
@@ -52,6 +51,14 @@ public class Post {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getSector() {
+        return sector;
+    }
+
+    public void setSector(String setcor) {
+        this.sector = setcor;
     }
 
     public String getTitle() {
@@ -94,19 +101,19 @@ public class Post {
         this.viewNum = viewNum;
     }
 
-    public Date getWriteDate() {
+    public String getWriteDate() {
         return writeDate;
     }
 
-    public void setWriteDate(Date writeDate) {
+    public void setWriteDate(String writeDate) {
         this.writeDate = writeDate;
     }
 
-    public Date getLastEditDate() {
+    public String getLastEditDate() {
         return lastEditDate;
     }
 
-    public void setLastEditDate(Date lastEditDate) {
+    public void setLastEditDate(String lastEditDate) {
         this.lastEditDate = lastEditDate;
     }
 

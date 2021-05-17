@@ -21,8 +21,9 @@ public interface PostRepository {
      * */
 
     Post save(Post post);
+    void edit(Post post);
     Optional<Post> findById(Long id);
     Optional<Post> findByTitle(String title);
     List<Post> findAll();
-    List<Post> findAll(List<String> types, List<String> countries, List<String> categrories);
+    List<Post> findBySector(String sector, List<String> countries, List<String> categories);
 }
