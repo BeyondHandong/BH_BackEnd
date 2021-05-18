@@ -2,8 +2,11 @@ package beyond.handong.se;
 
 
 import beyond.handong.se.repository.JpaPostRepository;
+import beyond.handong.se.repository.JpaUserRepository;
 import beyond.handong.se.repository.PostRepository;
+import beyond.handong.se.repository.UserRepository;
 import beyond.handong.se.service.PostService;
+import beyond.handong.se.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,4 +33,12 @@ public class SpringConfig {
         return new JpaPostRepository(em);
     }
 
+    @Bean
+    public UserRepository userRepository(){
+        return new JpaUserRepository(em);
+    }
+    @Bean
+    public UserService userService(){
+        return new UserService(userRepository());
+    }
 }
