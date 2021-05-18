@@ -22,10 +22,10 @@ public interface UserRepository {
 
     User save(User user);                       // save into database User table
     Optional<User> findById(Long id);           // using primary key
-    Optional<User> findByName(String name);
-    Optional<User> findByEmail(String email);
-    Optional<User> findByStudentID(Long stuid);
-    Optional<User> changePassword(String password);
+    Optional<User> findByName(String name);     // 특정 writer가 쓴 모든 글 조회
+    Optional<User> findByEmail(String email);   // 특정 email 주소로 조회
+    Optional<User> findByStudentID(Long stuid);         // 특정 학번으로 조회
+    void changePassword(Long id, String password);      // 특정 id의 유저를 찾아서 그 패스워드를 변경시킴
     List<User> findAll();                       // Retrieving all Users
 
 }
