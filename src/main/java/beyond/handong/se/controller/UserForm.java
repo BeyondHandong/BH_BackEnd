@@ -1,5 +1,7 @@
 package beyond.handong.se.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
 public class UserForm {
 
     /** UserForm은 사용자로부터 입력을 받을 Textfield라고 생각하면 된다.
@@ -9,6 +11,20 @@ public class UserForm {
 
     private Long studentId;
     private Long password;
+    private String name;
+
+    @GetMapping("/signin")
+    public String signInForm(){
+        return "signIn";     // viewResolver가 NewPost.html 찾아서 이동할 것
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getStudentId() {
         return studentId;
