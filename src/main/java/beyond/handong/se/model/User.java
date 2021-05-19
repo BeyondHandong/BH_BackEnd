@@ -22,16 +22,17 @@ public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)     // DB will generate id automatically
     private Long id;    // primary key
-    private Long studentId;
+    private String studentId;
     private String name;
     private String password;
     private String email;
-    private Date registerDate;
+    private String registerDate;
 
-    // 얘네 일단 보류. 따로 model을 만들지 or List로 만들어서 같이 관리 할 지.
+    private int authKey;
+
+// 얘네 일단 보류. 따로 model을 만들지 or List로 만들어서 같이 관리 할 지.
 /*
     private Date lastLogInDate;
-    private short authKey;
     private Long loginCount;
 
     */
@@ -44,11 +45,11 @@ public class User {
         this.id = id;
     }
 
-    public Long getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Long studentId) {
+    public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
 
@@ -75,11 +76,19 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Date getRegisterDate() {
+    public String getRegisterDate() {
         return registerDate;
     }
 
-    public void setRegisterDate(Date registerDate) {
+    public void setRegisterDate(String registerDate) {
         this.registerDate = registerDate;
+    }
+
+    public int getAuthKey() {
+        return authKey;
+    }
+
+    public void setAuthKey(int authKey) {
+        this.authKey = authKey;
     }
 }
