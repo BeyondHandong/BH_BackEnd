@@ -50,7 +50,7 @@ public class JpaUserRepository implements UserRepository{
     }
 
     @Override
-    public Optional<User> findByStudentID(Long stuid) {
+    public Optional<User> findByStudentID(String stuid) {
 //        User user = em.find(User.class, stuid);
 //        return Optional.ofNullable(user);
         List<User> result = em.createQuery("select m from User m where m.studentId = :studentId", User.class)

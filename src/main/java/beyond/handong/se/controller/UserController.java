@@ -30,24 +30,34 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("user/all")
+    @GetMapping("user")
     @ResponseBody
     public List<User> findAll(User user) {
         return userService.listAll();
     }
 
-    @PostMapping("user/new")
+
+    // 패스워드 검증. isUserIndB 이런 걸로
+    @PostMapping("user/signup")
     @ResponseBody
-    public String signIn(User user) {
+    public String signUp(User user) {
 
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-//        String register_Date = format.format(new Date());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        String writeDate = format.format(new Date());
 
-        user.setRegisterDate(new Date());
-
+        user.setRegisterDate(writeDate);
+        user.setAuthKey(0);     // 일반 유저는 0의 auth를 가짐.
         userService.join(user);
 
         return "redirect:/";
+    }
+
+
+
+    @PostMapping("user/signin")
+    @ResponseBody
+    public Long isValidUser(User user){
+        return userService.validateUser(user);
     }
 
 }
