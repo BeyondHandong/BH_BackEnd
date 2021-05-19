@@ -25,7 +25,7 @@ public class UserServiceIntegrationTest {
         // given
         User user = new User();
         user.setName("Handong");
-        user.setStudentId(2140749L);
+        user.setStudentId("2140749");
         // when
         Long savedId = userService.join(user);
 
