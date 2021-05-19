@@ -56,6 +56,9 @@ out/
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# app properties
+*.properties
+
 # Package Files #
 *.jar
 *.war

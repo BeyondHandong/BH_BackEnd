@@ -1,7 +1,18 @@
 package beyond.handong.se.controller;
 
+import beyond.handong.se.model.Post;
 import beyond.handong.se.model.User;
+import beyond.handong.se.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -12,9 +23,31 @@ public class UserController {
      *  TODO : check if there is more need to get a input form later -Jerome
      * */
 
-    private final User user;
+    private final UserService userService;
 
-    public UserController() {
-        user = new User();
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
+
+    @GetMapping("user/all")
+    @ResponseBody
+    public List<User> findAll(User user) {
+        return userService.listAll();
+    }
+
+    @PostMapping("user/new")
+    @ResponseBody
+    public String signIn(User user) {
+
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+//        String register_Date = format.format(new Date());
+
+        user.setRegisterDate(new Date());
+
+        userService.join(user);
+
+        return "redirect:/";
+    }
+
 }
