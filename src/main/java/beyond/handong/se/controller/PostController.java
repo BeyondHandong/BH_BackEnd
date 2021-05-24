@@ -31,7 +31,7 @@ public class PostController {
     }
     @PostMapping("post")
     @ResponseBody
-    public String create(Post post) {
+    public Long create(Post post) {
 
         post.setHelpfulNum(0l);
         post.setScrapNum(0l);
@@ -45,9 +45,7 @@ public class PostController {
 
         System.out.println("DATE" + writeDate);
 
-        postService.join(post);
-
-        return "redirect:/";
+        return postService.join(post);
     }
 
     @GetMapping("post/{post_id}")
@@ -103,11 +101,7 @@ public class PostController {
         return postService.findMyPosts(user_id);
     }
 
-//    @PostMapping("post/scrap")
-//    @ResponseBody
-//    public List<Post> myPosts() {
-//        return postService.findMyPosts();
-//    }
+
 
 //    @PutMapping("post/helpful")
 //    @ResponseBody
