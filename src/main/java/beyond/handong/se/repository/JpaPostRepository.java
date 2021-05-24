@@ -65,6 +65,10 @@ public class JpaPostRepository implements PostRepository{
         return results;
     }
 
+    public List<Post> findByWriterId(Long id){
+        return em.createQuery("select m from Post m where m.writerId = :id", Post.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 
 }
-
