@@ -1,12 +1,13 @@
 package beyond.handong.se.controller;
 
+import beyond.handong.se.model.Post;
 import beyond.handong.se.model.Scrap;
 import beyond.handong.se.service.PostService;
 import beyond.handong.se.service.ScrapService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class ScrapController {
@@ -17,6 +18,12 @@ public class ScrapController {
     public ScrapController(ScrapService scrapService, PostService postService) {
         this.scrapService = scrapService;
         this.postService = postService;
+    }
+
+    @GetMapping("scrap/my/{user_id}")
+    @ResponseBody
+    public List<Post> myScrapPosts(@PathVariable("user_id") Long user_id) {
+        return scrapService.findMyScrapPosts(user_id);
     }
 
     @PostMapping("scrap")
