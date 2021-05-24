@@ -9,11 +9,6 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "post_id")
-    @ManyToOne(targetEntity = Post.class, fetch = FetchType.LAZY)
-    private Post post;
-
-    @Column(name = "post_id", insertable = false, updatable = false)
     private Long postId;
 
     private String content;
@@ -32,14 +27,6 @@ public class Comment {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getPostId() {
-        return postId;
-    }
-
-    public void setPost_id(Long postId) {
-        this.postId = postId;
     }
 
     public String getContent() {
@@ -72,5 +59,13 @@ public class Comment {
 
     public void setWriteDate(String writeDate) {
         this.writeDate = writeDate;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 }

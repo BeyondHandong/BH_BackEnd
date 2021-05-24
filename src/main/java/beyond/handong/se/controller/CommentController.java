@@ -3,6 +3,7 @@ package beyond.handong.se.controller;
 import beyond.handong.se.model.Comment;
 import beyond.handong.se.model.Post;
 import beyond.handong.se.service.CommentService;
+import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,8 @@ public class CommentController {
 
     @PostMapping("comment")
     @ResponseBody
-    public Long saveComment(Post post, Comment comment) {
-        comment.setPost_id(post.getId());
+    public Long saveComment(Comment comment) {
+        System.out.println(comment.getPostId() + " " + comment.getContent());
         return commentService.saveNewComment(comment);
     }
 
