@@ -16,11 +16,9 @@ import javax.persistence.EntityManager;
 public class SpringConfig {
 
     private EntityManager em;
-    private final CommentRepository commentRepository;
 
-    public SpringConfig(EntityManager em, CommentRepository commentRepository) {
+    public SpringConfig(EntityManager em) {
         this.em = em;
-        this.commentRepository = commentRepository;
     }
 
     @Bean
@@ -34,8 +32,10 @@ public class SpringConfig {
     }
 
     @Bean
+    public CommentRepository commentRepository() { return new JpaCommentRepository(em); }
+    @Bean
     public CommentService commentService() {
-        return new CommentService(commentRepository);
+        return new CommentService(commentRepository());
     }
 
     @Bean
