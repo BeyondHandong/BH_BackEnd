@@ -4,6 +4,7 @@ package beyond.handong.se;
 import beyond.handong.se.repository.*;
 import beyond.handong.se.service.CommentService;
 import beyond.handong.se.service.PostService;
+import beyond.handong.se.service.ScrapService;
 import beyond.handong.se.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -44,5 +45,14 @@ public class SpringConfig {
     @Bean
     public UserService userService(){
         return new UserService(userRepository());
+    }
+
+    @Bean
+    public ScrapRepository scrapRepository(){
+        return new JpaScrapRepository(em);
+    }
+    @Bean
+    public ScrapService scrapService() {
+        return new ScrapService(scrapRepository());
     }
 }
