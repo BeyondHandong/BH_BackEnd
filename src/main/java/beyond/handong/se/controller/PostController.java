@@ -31,7 +31,7 @@ public class PostController {
     }
     @PostMapping("post")
     @ResponseBody
-    public String create(Post post) {
+    public Long create(Post post) {
 
         post.setHelpfulNum(0l);
         post.setScrapNum(0l);
@@ -45,9 +45,7 @@ public class PostController {
 
         System.out.println("DATE" + writeDate);
 
-        postService.join(post);
-
-        return "redirect:/";
+        return postService.join(post);
     }
 
     @GetMapping("post/{post_id}")
@@ -96,4 +94,18 @@ public class PostController {
 
         return postService.findBySector("자유", Arrays.asList(countries), Arrays.asList(categories));
     }
+
+    @GetMapping("post/my/{user_id}")
+    @ResponseBody
+    public List<Post> myPosts(@PathVariable("user_id") Long user_id) {
+        return postService.findMyPosts(user_id);
+    }
+
+
+
+//    @PutMapping("post/helpful")
+//    @ResponseBody
+//    public Long updatePostHelpfulNum(){
+//        return
+//    }
 }
