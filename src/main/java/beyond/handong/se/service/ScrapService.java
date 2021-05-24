@@ -5,6 +5,8 @@ import beyond.handong.se.model.Scrap;
 import beyond.handong.se.repository.ScrapRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 public class ScrapService {
     private final ScrapRepository scrapRepository;
@@ -16,5 +18,13 @@ public class ScrapService {
     public Long scrapPost(Scrap scrap) {
         scrapRepository.save(scrap);
         return scrap.getId();
+    }
+
+    public List<Post> findMyScrapPosts(Long userId){
+        return scrapRepository.findByUserId(userId);
+    }
+
+    public void deleteScrapPost(Scrap scrap){
+        scrapRepository.remove(scrap);
     }
 }
