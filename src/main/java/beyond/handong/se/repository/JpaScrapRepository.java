@@ -21,7 +21,7 @@ public class JpaScrapRepository implements ScrapRepository{
 
     @Override
     public void remove(Scrap scrap){
-        em.remove(scrap);
+        em.remove(em.contains(scrap) ? scrap : em.merge(scrap));
     }
 
     @Override
