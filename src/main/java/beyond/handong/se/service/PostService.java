@@ -49,4 +49,6 @@ public class PostService{
     public Optional<Post> findOne(Long postId) {
         return postRepository.findById(postId);
     }
+
+    public List<Post> findMyPosts(Long writerId) { return postRepository.findByWriterId(writerId); }
 }

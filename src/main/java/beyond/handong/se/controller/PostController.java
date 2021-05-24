@@ -96,4 +96,22 @@ public class PostController {
 
         return postService.findBySector("자유", Arrays.asList(countries), Arrays.asList(categories));
     }
+
+    @GetMapping("post/my/{user_id}")
+    @ResponseBody
+    public List<Post> myPosts(@PathVariable("user_id") Long user_id) {
+        return postService.findMyPosts(user_id);
+    }
+
+//    @PostMapping("post/scrap")
+//    @ResponseBody
+//    public List<Post> myPosts() {
+//        return postService.findMyPosts();
+//    }
+
+//    @PutMapping("post/helpful")
+//    @ResponseBody
+//    public Long updatePostHelpfulNum(){
+//        return
+//    }
 }
