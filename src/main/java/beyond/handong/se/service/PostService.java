@@ -1,6 +1,7 @@
 package beyond.handong.se.service;
 
 import beyond.handong.se.model.Post;
+import beyond.handong.se.model.Scrap;
 import beyond.handong.se.repository.PostRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,9 +36,6 @@ public class PostService{
                 });
     }
 
-    /**
-     * 전체 회원 조회
-     */
     public List<Post> findPosts() {
         return postRepository.findAll();
     }
@@ -51,4 +49,24 @@ public class PostService{
     }
 
     public List<Post> findMyPosts(Long writerId) { return postRepository.findByWriterId(writerId); }
+
+    public Long editHelpfulNum(Long postId, Long num){
+        Optional<Post> post = postRepository.findById(postId).stream().findAny();
+        if(post.isPresent()) {
+            post.get().setHelpfulNum(post.get().getHelpfulNum() + num);
+            return post.get().getHelpfulNum();
+        }
+        else return -1L;
+    }
+
+    public Long editScrapNum(Long postId, Long num){
+        Optional<Post> post = postRepository.findById(postId).stream().findAny();
+        if(post.isPresent()) {
+            post.get().setScrapNum(post.get().getScrapNum() + num);
+            return post.get().getScrapNum();
+        }
+        else return -1L;
+    }
+
+
 }
