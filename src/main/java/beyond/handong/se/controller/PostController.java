@@ -29,9 +29,10 @@ public class PostController {
     public List<Post> allPosts(Model model) {
         return postService.findPosts();
     }
+
     @PostMapping("post")
     @ResponseBody
-    public Long create(Post post) {
+    public Long create(@RequestBody Post post) {
 
         post.setHelpfulNum(0l);
         post.setScrapNum(0l);
@@ -53,9 +54,10 @@ public class PostController {
     public Optional<Post> aPost(@PathVariable("post_id") Long post_id) {
         return postService.findOne(post_id);
     }
+
     @PutMapping("post/{post_id}")
     @ResponseBody
-    public String change(Post post, @PathVariable("post_id") Long post_id){
+    public String change(@RequestBody Post post, @PathVariable("post_id") Long post_id){
         post.setId(post_id);
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
