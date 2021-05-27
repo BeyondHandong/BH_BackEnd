@@ -28,14 +28,14 @@ public class CommentController {
 
     @PostMapping("comment")
     @ResponseBody
-    public Long saveComment(Comment comment) {
+    public Long saveComment(@RequestBody Comment comment) {
         System.out.println(comment.getPostId() + " " + comment.getContent());
         return commentService.saveNewComment(comment);
     }
 
     @PutMapping("comment")
     @ResponseBody
-    public void editComment(Comment comment) {
+    public void editComment(@RequestBody Comment comment) {
         commentService.editComment(comment);
     }
 }
