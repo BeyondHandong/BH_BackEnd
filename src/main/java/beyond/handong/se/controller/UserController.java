@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
@@ -40,7 +41,7 @@ public class UserController {
     // 패스워드 검증. isUserIndB 이런 걸로
     @PostMapping("user/signup")
     @ResponseBody
-    public String signUp(User user) {
+    public String signUp(@RequestBody User user) {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         String writeDate = format.format(new Date());
@@ -56,7 +57,7 @@ public class UserController {
 
     @PostMapping("user/signin")
     @ResponseBody
-    public Long isValidUser(User user){
+    public Long isValidUser(@RequestBody User user){
         return userService.validateUser(user);
     }
 
