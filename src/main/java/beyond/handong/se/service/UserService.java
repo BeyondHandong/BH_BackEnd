@@ -37,10 +37,12 @@ public class UserService {
 
     public Long validateUser(User user){
 //        User exist =
-        if(userRepository.findByEmail(user.getEmail()).isPresent()){
+        Optional<User> usr = userRepository.findByEmail(user.getEmail());
+        if(usr.isPresent()){
             String password = user.getPassword();
-            if (user.getPassword().equals(password))
-                return user.getId();
+            if (user.getPassword().equals(password)) {
+                return usr.get().getId();
+            }
             return -2L;
         }
         return -1L;
