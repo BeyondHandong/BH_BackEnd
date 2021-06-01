@@ -25,7 +25,7 @@ public interface PostRepository {
     Optional<Post> findById(Long id);
     Optional<Post> findByTitle(String title);
     List<Post> findAll();
-    List<Post> findBySector(String sector, List<String> countries, List<String> categories);
+    List<Post> findBySector(String sector, List<String> countries, List<String> categories, String keyword);
     List<Post> findByWriterId(Long id);
 
 }
