@@ -16,23 +16,20 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    /** TODO
-     * 회원 가입    => Done
-     * 로그인
-     * */
     public Long join(User user){
-        // 같은 이름이 있는 중복 회원은 안된다.
-        validateDuplicateMember(user);
-        userRepository.save(user);
-        return user.getId();
+        // 같은 이메일이 있는 중복 회원은 안된다.
+        if(validateDuplicateMember(user)){
+            return -1L;
+        }
+        return userRepository.save(user).getId();
     }
 
-    private void validateDuplicateMember(User user) {
-        userRepository.findByEmail(user.getEmail())
+    private boolean validateDuplicateMember(User user) {
+        return userRepository.findByEmail(user.getEmail()).isPresent();
                 // 바로 get 써서 꺼내는 것 대신 아래와 같이 if문으로 null 예외처리 하는걸 권장.
-                .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-                });
+//                .ifPresent(m -> {
+//                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+//                });
     }
 
     public Long validateUser(User user){
