@@ -40,8 +40,8 @@ public class PostService{
         return postRepository.findAll();
     }
 
-    public List<Post> findBySector(String sector, List<String> countries, List<String> categories){
-        return postRepository.findBySector(sector, countries, categories);
+    public List<Post> findBySector(String sector, List<String> countries, List<String> categories, String keyword){
+        return postRepository.findBySector(sector, countries, categories, keyword);
     }
 
     public Optional<Post> findOne(Long postId) {
