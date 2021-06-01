@@ -52,7 +52,10 @@ public class UserController {
 
         user.setRegisterDate(writeDate);
         user.setAuthKey(0);     // 일반 유저는 0의 auth를 가짐.
-        userService.join(user);
+        // 이미 중복회원이 있을 때
+        if(userService.join(user) == -1L){
+            return "The email is already existed!";
+        }
 
         return "redirect:/";
     }
