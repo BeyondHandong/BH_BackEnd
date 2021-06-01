@@ -5,6 +5,7 @@ import beyond.handong.se.model.Post;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,14 +50,19 @@ public class JpaPostRepository implements PostRepository{
     }
 
     @Override
-    public List<Post> findBySector(String sector, List<String> countries, List<String> categories) {
+    public List<Post> findBySector(String sector, List<String> countries, List<String> categories, String keyword) {
         if(countries.isEmpty())
             countries = em.createQuery("select distinct m.country from Post m").getResultList();
 
         if(categories.isEmpty())
             categories = em.createQuery("select distinct m.category from Post m").getResultList();
 
-        List<Post> results = em.createQuery("select m from Post m where m.sector = :sector and m.country in :countries and m.category in :categories", Post.class)
+        keyword = "%" + keyword + "%";
+
+        List<String> keywords = Arrays.asList(keyword.split(","));
+
+        List<Post> results = em.createQuery("select m from Post m where m.title like :keyword and m.sector = :sector and m.country in :countries and m.category in :categories", Post.class)
+                .setParameter("keyword", keyword)
                 .setParameter("sector", sector)
                 .setParameter("countries", countries)
                 .setParameter("categories", categories)

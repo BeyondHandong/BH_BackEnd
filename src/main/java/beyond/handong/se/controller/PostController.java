@@ -80,7 +80,11 @@ public class PostController {
         if(request.getParameter("category") != null)
             categories = request.getParameter("category").split(",");
 
-        return postService.findBySector("정보", Arrays.asList(countries), Arrays.asList(categories));
+        String searchKeyWord = "";
+        if(request.getParameter("search") != null)
+            searchKeyWord = request.getParameter("search");
+
+        return postService.findBySector("정보", Arrays.asList(countries), Arrays.asList(categories), searchKeyWord);
     }
 
     @GetMapping("post/free")
@@ -94,7 +98,11 @@ public class PostController {
         if(request.getParameter("category") != null)
             categories = request.getParameter("category").split(",");
 
-        return postService.findBySector("자유", Arrays.asList(countries), Arrays.asList(categories));
+        String searchKeyWord = "";
+        if(request.getParameter("search") != null)
+            searchKeyWord = request.getParameter("search");
+
+        return postService.findBySector("자유", Arrays.asList(countries), Arrays.asList(categories), searchKeyWord);
     }
 
     @GetMapping("post/my/{user_id}")
