@@ -60,8 +60,6 @@ public class UserController {
         return "redirect:/";
     }
 
-
-
     @PostMapping("user/signin")
     @ResponseBody
     public Long isValidUser(@RequestBody User user){
