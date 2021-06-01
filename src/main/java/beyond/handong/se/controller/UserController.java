@@ -6,14 +6,12 @@ import beyond.handong.se.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -37,6 +35,12 @@ public class UserController {
         return userService.listAll();
     }
 
+
+    @GetMapping("user/profile/{user_id}")
+    @ResponseBody
+    public Optional<User> findAnUser(@PathVariable("user_id") Long post_id){
+        return userService.findOne(post_id);
+    }
 
     // 패스워드 검증. isUserIndB 이런 걸로
     @PostMapping("user/signup")

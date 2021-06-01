@@ -49,4 +49,19 @@ public class UserServiceIntegrationTest {
 
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
     }
+
+    /*@Test
+    public void 회원_정보_조회() throws Exception{
+        // given
+        User user1 = new User();
+        user1.setEmail("beyond@handong.edu");
+        userService.join(user1);
+
+        User user2 = new User();
+        user2.setEmail("beyond2@handong.edu");
+        userService.join(user2);
+        // when
+        userService.findOne(user1.getId()).get()
+        // then
+    }*/
 }
