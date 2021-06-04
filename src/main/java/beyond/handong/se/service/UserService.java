@@ -21,15 +21,18 @@ public class UserService {
         if(validateDuplicateMember(user)){
             return -1L;
         }
+        if(!isHandongEmail(user.getEmail()))
+            return -2L;
         return userRepository.save(user).getId();
+    }
+
+    private boolean isHandongEmail(String email){
+        email = email.split("@")[1];
+        return email.equals("handong.edu");
     }
 
     private boolean validateDuplicateMember(User user) {
         return userRepository.findByEmail(user.getEmail()).isPresent();
-                // 바로 get 써서 꺼내는 것 대신 아래와 같이 if문으로 null 예외처리 하는걸 권장.
-//                .ifPresent(m -> {
-//                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-//                });
     }
 
     public Long validateUser(User user){
