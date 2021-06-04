@@ -37,7 +37,7 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    public void deleteComment(Long post_id){
-        commentRepository.deleteByPostId(post_id);
+    public void deleteComment(Long commentId){
+        commentRepository.deleteByCommentId(commentId);
     }
 }

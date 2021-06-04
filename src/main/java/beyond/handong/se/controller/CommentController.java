@@ -38,4 +38,10 @@ public class CommentController {
     public void editComment(@RequestBody Comment comment) {
         commentService.editComment(comment);
     }
+
+    @DeleteMapping("comment/{comment_id}")
+    @ResponseBody
+    public void editComment(@PathVariable("comment_id") Long comment_id) {
+        commentService.deleteComment(comment_id);
+    }
 }
