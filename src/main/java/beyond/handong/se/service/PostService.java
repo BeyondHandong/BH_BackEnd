@@ -1,5 +1,6 @@
 package beyond.handong.se.service;
 
+import beyond.handong.se.model.Helpful;
 import beyond.handong.se.model.Post;
 import beyond.handong.se.model.Scrap;
 import beyond.handong.se.repository.CommentRepository;
@@ -60,7 +61,29 @@ public class PostService{
         postRepository.delete(post_id);
     }
 
+    public void updateHelpful(Helpful helpful){
+        Optional<Helpful> hf = postRepository.findHelpfuById(helpful);
+        if(!hf.isPresent()){
+            postRepository.newHelpful(helpful);
+            editHelpfulNum(helpful.getPostId(), 1L);
+        }
+        else{
+            helpful.setId(hf.get().getId());
+            postRepository.deleteHelpful(helpful);
+            editHelpfulNum(helpful.getPostId(), -1L);
+        }
+    }
+
+    public boolean isHelpful(Long postId, Long userId){
+        Helpful helpful = new Helpful();
+        helpful.setUserId(userId);
+        helpful.setPostId(postId);
+        Optional<Helpful> hf = postRepository.findHelpfuById(helpful);
+        return hf.isPresent();
+    }
+
     public Long editHelpfulNum(Long postId, Long num){
+        System.out.println("pid:"+postId);
         Optional<Post> post = postRepository.findById(postId).stream().findAny();
         if(post.isPresent()) {
             post.get().setHelpfulNum(post.get().getHelpfulNum() + num);

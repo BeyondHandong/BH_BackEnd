@@ -1,5 +1,6 @@
 package beyond.handong.se.repository;
 
+import beyond.handong.se.model.Helpful;
 import beyond.handong.se.model.Post;
 
 import java.util.List;
@@ -29,4 +30,7 @@ public interface PostRepository {
     List<Post> findBySector(String sector, List<String> countries, List<String> categories, String keyword);
     List<Post> findByWriterId(Long id);
 
+    Optional<Helpful> findHelpfuById(Helpful helpful);
+    void newHelpful(Helpful helpful);
+    void deleteHelpful(Helpful helpful);
 }
