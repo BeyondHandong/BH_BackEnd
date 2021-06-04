@@ -36,7 +36,7 @@ public class UserService {
 //        User exist =
         Optional<User> usr = userRepository.findByEmail(user.getEmail());
         if(usr.isPresent()){
-            String password = user.getPassword();
+            String password = usr.get().getPassword();
             if (user.getPassword().equals(password)) {
                 return usr.get().getId();
             }
