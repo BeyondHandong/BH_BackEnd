@@ -111,11 +111,12 @@ public class PostController {
         return postService.findMyPosts(user_id);
     }
 
-
-
-//    @PutMapping("post/helpful")
+//    @PutMapping("post/{post_id}/helpful")
 //    @ResponseBody
-//    public Long updatePostHelpfulNum(){
+//    public Long updatePostHelpfulNum(@PathVariable("post_id") Long post_id){
+//        postService.update
 //        return
 //    }
+
+
 }

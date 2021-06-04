@@ -45,7 +45,9 @@ public class PostService{
     }
 
     public Optional<Post> findOne(Long postId) {
-        return postRepository.findById(postId);
+        Optional<Post> post = postRepository.findById(postId);
+        post.get().setViewNum(post.get().getViewNum() + 1);
+        return post;
     }
 
     public List<Post> findMyPosts(Long writerId) { return postRepository.findByWriterId(writerId); }
