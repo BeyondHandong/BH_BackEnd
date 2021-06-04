@@ -51,11 +51,14 @@ public class UserController {
         user.setRegisterDate(writeDate);
         user.setAuthKey(0);     // 일반 유저는 0의 auth를 가짐.
         // 이미 중복회원이 있을 때
-        if(userService.join(user) == -1L){
+        Long result = userService.join(user);
+        if(result == -1L){
             return "The email is already existed!";
         }
+        if(result == -2L)
+            return "Only Handong Email Available";
 
-        return "redirect:/";
+        return "Sign up success";
     }
 
     @PostMapping("user/signin")
