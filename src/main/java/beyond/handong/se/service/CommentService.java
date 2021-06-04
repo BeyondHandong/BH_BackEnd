@@ -36,4 +36,8 @@ public class CommentService {
     public void editComment(Comment comment){
         commentRepository.save(comment);
     }
+
+    public void deleteComment(Long post_id){
+        commentRepository.deleteByPostId(post_id);
+    }
 }
