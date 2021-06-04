@@ -22,6 +22,7 @@ public interface PostRepository {
 
     Post save(Post post);
     void edit(Post post);
+    void delete(Long id);
     Optional<Post> findById(Long id);
     Optional<Post> findByTitle(String title);
     List<Post> findAll();
