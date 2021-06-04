@@ -1,5 +1,6 @@
 package beyond.handong.se.controller;
 
+import beyond.handong.se.model.Helpful;
 import beyond.handong.se.model.Post;
 import beyond.handong.se.service.PostService;
 import com.sun.xml.bind.v2.TODO;
@@ -10,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class PostController {
@@ -117,12 +115,21 @@ public class PostController {
         postService.delete(post_id);
     }
 
-//    @PutMapping("post/{post_id}/helpful")
-//    @ResponseBody
-//    public Long updatePostHelpfulNum(@PathVariable("post_id") Long post_id){
-//        postService.update
-//        return
-//    }
+    @PutMapping("post/helpful")
+    @ResponseBody
+    public void updatePostHelpfulNum(@RequestBody Helpful helpful){
+        postService.updateHelpful(helpful);
+    }
+
+    @GetMapping("post/helpful/{post_id}/{user_id}")
+    @ResponseBody
+    public Map isHelpful(@PathVariable("post_id") Long post_id, @PathVariable("user_id") Long user_id){
+        Map result = new HashMap<String, Object>();
+
+        result.put("isHelpful", Boolean.toString(postService.isHelpful(post_id, user_id)));
+
+        return result;
+    }
 
 
 }

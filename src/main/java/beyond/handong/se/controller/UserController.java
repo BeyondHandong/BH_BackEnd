@@ -66,6 +66,7 @@ public class UserController {
         if(user_id<0) result.setId(user_id);
         else result = userService.findOne(user_id).get();
 
+        result.setPassword(null);
         return result;
     }
 }

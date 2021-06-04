@@ -10,7 +10,7 @@ public class Helpful {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long writerId;
+    private Long userId;
     private Long postId;
 
     public Long getId() {
@@ -21,12 +21,12 @@ public class Helpful {
         this.id = id;
     }
 
-    public Long getWriterId() {
-        return writerId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setWriterId(Long writerId) {
-        this.writerId = writerId;
+    public void setUserId(Long writerId) {
+        this.userId = writerId;
     }
 
     public Long getPostId() {
