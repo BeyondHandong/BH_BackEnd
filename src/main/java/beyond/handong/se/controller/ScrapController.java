@@ -28,14 +28,14 @@ public class ScrapController {
 
     @PostMapping("scrap")
     @ResponseBody
-    public Long myScrapPosts(Scrap scrap) {
+    public Long myScrapPosts(@RequestBody Scrap scrap) {
         postService.editScrapNum(scrap.getPostId(), 1L);
         return scrapService.scrapPost(scrap);
     }
 
     @DeleteMapping("scrap")
     @ResponseBody
-    public String deleteMyScrapPost(Scrap scrap) {
+    public String deleteMyScrapPost(@RequestBody Scrap scrap) {
         scrapService.deleteScrapPost(scrap);
         return "deleted";
     }
