@@ -52,6 +52,10 @@ public class PostService{
 
     public List<Post> findMyPosts(Long writerId) { return postRepository.findByWriterId(writerId); }
 
+    public void delete(Long post_id){
+        postRepository.delete(post_id);
+    }
+
     public Long editHelpfulNum(Long postId, Long num){
         Optional<Post> post = postRepository.findById(postId).stream().findAny();
         if(post.isPresent()) {

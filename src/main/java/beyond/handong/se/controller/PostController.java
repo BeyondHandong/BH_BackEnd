@@ -111,6 +111,12 @@ public class PostController {
         return postService.findMyPosts(user_id);
     }
 
+    @DeleteMapping("post/{post_id}")
+    @ResponseBody
+    public void deleteAPost(@PathVariable("post_id") Long post_id){
+        postService.delete(post_id);
+    }
+
 //    @PutMapping("post/{post_id}/helpful")
 //    @ResponseBody
 //    public Long updatePostHelpfulNum(@PathVariable("post_id") Long post_id){
