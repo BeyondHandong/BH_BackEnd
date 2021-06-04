@@ -2,6 +2,7 @@ package beyond.handong.se.service;
 
 import beyond.handong.se.model.Post;
 import beyond.handong.se.model.Scrap;
+import beyond.handong.se.repository.CommentRepository;
 import beyond.handong.se.repository.PostRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,9 +13,11 @@ import java.util.Optional;
 public class PostService{
 
     private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
 
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, CommentRepository commentRepository) {
         this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
     }
 
     /**
@@ -53,6 +56,7 @@ public class PostService{
     public List<Post> findMyPosts(Long writerId) { return postRepository.findByWriterId(writerId); }
 
     public void delete(Long post_id){
+        commentRepository.deleteByPostId(post_id);
         postRepository.delete(post_id);
     }
 

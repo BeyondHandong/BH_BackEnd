@@ -9,4 +9,5 @@ public interface CommentRepository{
     List<Comment> findCommentsByPost_Id(Long post_id);
     Comment save(Comment comment);
     Comment edit(Comment comment);
+    void deleteByPostId(Long post_id);
 }
