@@ -1,5 +1,6 @@
 package beyond.handong.se.repository;
 
+import beyond.handong.se.model.Helpful;
 import beyond.handong.se.model.Post;
 
 import javax.persistence.EntityManager;
@@ -82,4 +83,24 @@ public class JpaPostRepository implements PostRepository{
                 .getResultList();
     }
 
+    @Override
+    public Optional<Helpful> findHelpfuById(Helpful helpful) {
+        Optional<Helpful> result = em.createQuery("select h from Helpful h where h.postId = :pid and h.userId = :uid", Helpful.class)
+                .setParameter("pid", helpful.getPostId())
+                .setParameter("uid", helpful.getUserId())
+                .getResultList()
+                .stream().findAny();
+
+        return result;
+    }
+
+    @Override
+    public void newHelpful(Helpful helpful) {
+        em.persist(helpful);
+    }
+
+    @Override
+    public void deleteHelpful(Helpful helpful) {
+        em.remove(em.contains(helpful) ? helpful : em.merge(helpful));
+    }
 }
