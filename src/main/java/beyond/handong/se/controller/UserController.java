@@ -60,9 +60,12 @@ public class UserController {
 
     @PostMapping("user/signin")
     @ResponseBody
-    public Map isValidUser(@RequestBody User user){
-        Map result = new HashMap<String, Long>();
-        result.put("user_id",userService.validateUser(user));
+    public User isValidUser(@RequestBody User user){
+        User result = new User();
+        Long user_id = userService.validateUser(user);
+        if(user_id<0) result.setId(user_id);
+        else result = userService.findOne(user_id).get();
+
         return result;
     }
 }
