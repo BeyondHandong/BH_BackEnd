@@ -48,20 +48,4 @@ class PostServiceIntegrationTest {
         Post findPost = postService.findOne(saveId).get();
         assertThat(post.getTitle()).isEqualTo(findPost.getTitle());
     }
-
-    @Test
-    void findPosts() {
-        // given
-        Post post = new Post();
-        post.setTitle("test");
-
-        // when
-        Long saveId = postService.join(post);
-
-
-    }
-
-    @Test
-    void findOne() {
-    }
 }
