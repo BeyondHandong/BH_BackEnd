@@ -31,4 +31,14 @@ public class JpaCommentRepository implements CommentRepository{
         em.merge(comment);
         return comment;
     }
+
+    @Override
+    public void deleteByPostId(Long post_id) {
+      List<Comment> comments = em.createQuery("select c from Comment c where c.postId = :post_id", Comment.class)
+                .setParameter("post_id", post_id)
+                .getResultList();
+
+      for (Object comment : comments)
+          em.remove(comment);
+    }
 }
