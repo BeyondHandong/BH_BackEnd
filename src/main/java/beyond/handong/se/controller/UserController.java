@@ -9,9 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Controller
@@ -38,8 +36,8 @@ public class UserController {
 
     @GetMapping("user/profile/{user_id}")
     @ResponseBody
-    public Optional<User> findAnUser(@PathVariable("user_id") Long post_id){
-        return userService.findOne(post_id);
+    public Optional<User> findAnUser(@PathVariable("user_id") Long user_id){
+        return userService.findOne(user_id);
     }
 
     // 패스워드 검증. isUserIndB 이런 걸로
@@ -62,8 +60,9 @@ public class UserController {
 
     @PostMapping("user/signin")
     @ResponseBody
-    public Long isValidUser(@RequestBody User user){
-        return userService.validateUser(user);
+    public Map isValidUser(@RequestBody User user){
+        Map result = new HashMap<String, Long>();
+        result.put("user_id",userService.validateUser(user));
+        return result;
     }
-
 }
