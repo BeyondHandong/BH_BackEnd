@@ -47,8 +47,6 @@ public class UserServiceIntegrationTest {
         // when
         userService.join(user);
         assertThat(userService.join(user2)).isEqualTo(-1L);
-//        IllegalStateException e = assertThrows(IllegalStateException.class, () -> userService.join(user2));
-//        assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
     }
 
 }
