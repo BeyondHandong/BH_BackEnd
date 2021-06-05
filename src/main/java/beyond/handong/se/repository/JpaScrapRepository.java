@@ -26,7 +26,7 @@ public class JpaScrapRepository implements ScrapRepository{
 
     @Override
     public List<Post> findByUserId(Long userId) {
-        return em.createQuery("select p from Post p INNER join Scrap s On p.writerId=s.writerId AND p.id=s.postId where p.writerId = :id", Post.class)
+        return em.createQuery("select p from Post p INNER join Scrap s On p.writerId=s.writerId AND p.id=s.postId where p.writerId = :id order by p.writeDate desc", Post.class)
                 .setParameter("id", userId)
                 .getResultList();
     }
