@@ -37,7 +37,14 @@ public class PostController {
         post.setViewNum(0l);
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        String writeDate = format.format(new Date());
+
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        cal.add(Calendar.HOUR, 9);
+        String writeDate = format.format(cal.getTime());
+
 
         post.setWriteDate(writeDate);
         post.setLastEditDate(writeDate);
