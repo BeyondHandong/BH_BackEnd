@@ -51,7 +51,7 @@ public class JpaPostRepository implements PostRepository{
 
     @Override
     public List<Post> findAll() {
-        return em.createQuery("select m from Post m order by m.writeDate desc", Post.class)
+        return em.createQuery("select m from Post m order by m.type, m.writeDate desc", Post.class)
                 .getResultList();
     }
 
@@ -67,7 +67,7 @@ public class JpaPostRepository implements PostRepository{
 
         List<String> keywords = Arrays.asList(keyword.split(","));
 
-        List<Post> results = em.createQuery("select m from Post m where m.title like :keyword and m.sector = :sector and m.country in :countries and m.category in :categories order by m.writeDate desc", Post.class)
+        List<Post> results = em.createQuery("select m from Post m where m.title like :keyword and m.sector = :sector and m.country in :countries and m.category in :categories order by m.type, m.writeDate desc", Post.class)
                 .setParameter("keyword", keyword)
                 .setParameter("sector", sector)
                 .setParameter("countries", countries)
