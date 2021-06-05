@@ -42,7 +42,7 @@ public class JpaPostRepository implements PostRepository{
 
     @Override
     public Optional<Post> findByTitle(String title) {
-        List<Post> result = em.createQuery("select m from Post m where m.title = :title", Post.class)
+        List<Post> result = em.createQuery("select m from Post m where m.title = :title order by m.writeDate desc", Post.class)
                 .setParameter("title", title)
                 .getResultList();
 
@@ -51,7 +51,7 @@ public class JpaPostRepository implements PostRepository{
 
     @Override
     public List<Post> findAll() {
-        return em.createQuery("select m from Post m", Post.class)
+        return em.createQuery("select m from Post m order by m.writeDate desc", Post.class)
                 .getResultList();
     }
 
@@ -61,13 +61,13 @@ public class JpaPostRepository implements PostRepository{
             countries = em.createQuery("select distinct m.country from Post m").getResultList();
 
         if(categories.isEmpty())
-            categories = em.createQuery("select distinct m.category from Post m").getResultList();
+            categories = em.createQuery("select distinct m.category from Post m ").getResultList();
 
         keyword = "%" + keyword + "%";
 
         List<String> keywords = Arrays.asList(keyword.split(","));
 
-        List<Post> results = em.createQuery("select m from Post m where m.title like :keyword and m.sector = :sector and m.country in :countries and m.category in :categories", Post.class)
+        List<Post> results = em.createQuery("select m from Post m where m.title like :keyword and m.sector = :sector and m.country in :countries and m.category in :categories order by m.writeDate desc", Post.class)
                 .setParameter("keyword", keyword)
                 .setParameter("sector", sector)
                 .setParameter("countries", countries)
@@ -78,7 +78,7 @@ public class JpaPostRepository implements PostRepository{
     }
 
     public List<Post> findByWriterId(Long id){
-        return em.createQuery("select m from Post m where m.writerId = :id", Post.class)
+        return em.createQuery("select m from Post m where m.writerId = :id order by m.writeDate desc", Post.class)
                 .setParameter("id", id)
                 .getResultList();
     }
